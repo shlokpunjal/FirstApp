@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Nav2",
-    "slug": "Nav2",
+    "name": "FirstApp",
+    "slug": "Shlok-FirstApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -17,6 +17,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.shlok.firstapp",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -34,6 +35,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "533c2775-02fc-47c3-b7c8-3a271808199a"
+      }
     }
   }
 }
