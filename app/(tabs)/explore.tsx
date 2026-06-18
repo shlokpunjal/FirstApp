@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useFetch } from '@/hooks/useFetch'
+import { useTheme } from '@/context/ThemeContext'
 
 type User = {
   id: number
@@ -11,36 +12,35 @@ type User = {
 
 export default function Explore() {
   const { data: users, loading, error } = useFetch<User[]>('https://jsonplaceholder.typicode.com/users')
+  const { colors } = useTheme()
 
   if (loading) {
     return (
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.container}>
-          <Text style={styles.loadingText}>Loading...</Text>
-        </View>
+      <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
+        <Text style={[styles.loadingText, { color: colors.text }]}>Loading...</Text>
       </SafeAreaView>
     )
   }
 
   if (error) {
     return (
-      <SafeAreaView style={styles.safeArea}>
-        <Text style={styles.loadingText}>Error: {error}</Text>
+      <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
+        <Text style={[styles.loadingText, { color: colors.text }]}>Error: {error}</Text>
       </SafeAreaView>
     )
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
       <View style={styles.container}>
         <FlatList
           data={users}
           keyExtractor={(item) => item.id.toString()}
-          ListHeaderComponent={<Text style={styles.heading}>Users</Text>}
+          ListHeaderComponent={<Text style={[styles.heading, { color: colors.text }]}>Users</Text>}
           renderItem={({ item }) => (
-            <View style={styles.userCard}>
-              <Text style={styles.userName}>{item.name}</Text>
-              <Text style={styles.userEmail}>{item.email}</Text>
+            <View style={[styles.userCard, { backgroundColor: colors.card }]}>
+              <Text style={[styles.userName, { color: colors.text }]}>{item.name}</Text>
+              <Text style={[styles.userEmail, { color: colors.subtext }]}>{item.email}</Text>
             </View>
           )}
         />

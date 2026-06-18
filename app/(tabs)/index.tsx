@@ -1,13 +1,15 @@
 import { useRouter } from 'expo-router'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { useTheme } from '@/context/ThemeContext'
 
 export default function Home() {
   const router = useRouter()
+  const { colors } = useTheme()
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
-      <Text style={styles.subtext}>This is the home</Text>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.text, {color: colors.text}]}>Home</Text>
+      <Text style={[styles.subtext, {color: colors.subtext}]}>This is the home</Text>
       <TouchableOpacity
         style={styles.btn}
         onPress={() => router.push('/detail')} >
